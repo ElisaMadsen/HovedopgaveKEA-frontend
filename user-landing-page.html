@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+      });
+
+    </script>
+
+    <link rel="stylesheet" href="style/main.css"> 
+    <script src="./Javascript/create-post.js"></script> 
+
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="body-div" style="flex-direction: column;">
+    <div id="greeting"></div>
+
+    <div>
+      <button type="button" class="btn" onclick="redirectToCreatePost()">Opret Indlæg</button>
+    </div>
+
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');    
+    const userName = urlParams.get('name');
+
+    // Display a personalized greeting
+    const greetingElement = document.getElementById('greeting');
+    if (userName) {
+        greetingElement.textContent = `Hej, ${userName}!`;
+    } else {
+        greetingElement.textContent = 'Velkommen!';
+    }
+</script>
+
+  <div id="footer" class="fixed-bottom"></div>
+
+</body>
+</html>

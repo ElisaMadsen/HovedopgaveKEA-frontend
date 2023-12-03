@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+      });
+
+    </script>
+
+    <link rel="stylesheet"  href="style/main.css">   
+    <script src="./Javascript/fetch.js"></script>
+    <script src="./Javascript/login.js"></script>
+
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="body-div">
+    <form id="login-form">
+        <div class="text-center">
+          <h1>Login</h1> 
+        </div>
+        <br>
+        <br>
+            <div class="mb-3">
+              <label for="userEmail" class="form-label font-weight-bold">Email:</label>
+              <input required type="text" class="form-control" id="userEmail" name="userEmail">
+            </div> 
+
+            <div class="mb-3">
+              <label for="userPassword" class="form-label">Kodeord:</label>
+              <input required type="text" class="form-control" id="userPassword" name="userPassword">
+            </div>
+            
+            <div class="text-center d-grid gap-2 col-3 mx-auto">
+              <button type="button" class="btn" onclick="login()">Login</button>
+            </div>
+             
+            <div class="text-center d-grid gap-1 col-3 mx-auto">
+              <button onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">Annuller</button>
+            </div> 
+          </form>
+
+  </div>
+
+
+  <div id="footer" class="fixed-bottom"></div>
+
+</body>
+</html>

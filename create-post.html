@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $("#header").load("header.html");
+        $("#footer").load("footer.html");
+      });
+
+    </script>
+
+    <link rel="stylesheet" href="style/main.css"> 
+
+</head>
+<body>
+
+  <div id="header"></div>
+
+  <div class="body-div">
+    <form id="add-post-form">
+        <div class="text-center">
+          <h1>Opret indlæg</h1> 
+        </div>
+          <br>
+          <br>
+  
+          <div class="mb-3">
+              <label for="postTitle" class="form-label font-weight-bold">Titel:</label>
+              <input required type="text" class="form-control" id="postTitle" name="postTitle">
+            </div>
+  
+            <div class="mb-3" style="display: flex; flex-direction: column;">
+              <label for="post" class="form-label">Indlæg:</label>
+              <textarea id="post" name="post" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
+            </div>
+
+            <div class="mb-3">
+              <label for="postDate" class="form-label">Dato:</label>
+              <input required type="Date" class="form-control" id="postDate" name="postDate">
+            </div>
+
+            <div class="mb-3">
+              <input type="hidden" name="userId" value="${userId}">
+            </div>
+            
+            <div class="text-center d-grid gap-2 col-6 mx-auto">
+              <button type="submit" id="submit-user" class="btn">Opret Indlæg</button>
+            </div>
+             
+            <div class="text-center d-grid gap-1 col-3 mx-auto">
+              <button onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">Annuller</button>
+            </div> 
+       </form>
+
+
+  </div>
+
+  <div id="footer" class="fixed-bottom"></div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+
+    const thisForm = document.getElementById('add-post-form');
+    thisForm.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const formData = new FormData(thisForm).entries()
+        const response = await fetch('http://localhost:8080/api/v1/post/createPost', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(Object.fromEntries(formData))
+        });
+        const result = await response.json();
+        // here we can check the result and based on result we can redirect to new page or show error message
+        window.location.href = "/user-landing-page.html"; // this will redirect to the new page
+    });
+
+
+  </script>  
+
+</body>
+</html>

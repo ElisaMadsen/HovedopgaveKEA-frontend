@@ -11,25 +11,29 @@
 
     </script>
 
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
-    <script>
-        $(function(){
-        $("#header").load("header.html");
-        $("#footer").load("footer.html");
-        });
+    <link rel="stylesheet" href="style/main.css">  
+    <script src="./Javascript/fetch.js"></script>
+    <script src="./Javascript/post.js"></script> 
 
-    </script>
-        
     <title>Opgaveforum</title>
+
 </head>
 <body>
 
     <div id="header"></div>
 
-    heej heeej
+    <div>
+        <div id="show-posts"></div>
+    </div>
 
 
     <div id="footer"></div>
+
+    <script>
+        window.onload = function() {
+            getAllPosts();
+        };
+    </script>
     
 </body>
 </html>
