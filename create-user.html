@@ -35,8 +35,8 @@
 
           <div class="mb-3">
             <label for="fieldOfStudy" class="form-label">Studieretning:</label>
-            <input required type="text" class="form-control" id="fieldOfStudy" name="fieldOfStudy">
-          </div>
+            <select required type="text" class="form-control" id="fieldOfStudy" name="fieldOfStudy"></select>
+          </div>          
 
           <div class="mb-3">
             <label for="graduationYear" class="form-label">Afgangsår:</label>
@@ -75,22 +75,63 @@
 
   <script>
 
-    const thisForm = document.getElementById('add-user-form');
+    document.addEventListener('DOMContentLoaded', async function () {
+        // Fetch field of study data from the server
+        const response = await fetch('http://localhost:8080/api/v1/fieldOfStudy/fieldOfStudies/all');
+        const fieldOfStudyData = await response.json();
+
+        // Get a reference to the dropdown element
+        const fieldOfStudyDropdown = document.getElementById('fieldOfStudy');
+
+        // Add a default option
+        const defaultOption = document.createElement('option');
+        defaultOption.value = ''; // You may want to set this to an appropriate default value
+        defaultOption.textContent = 'Vælg en uddannelse';
+        fieldOfStudyDropdown.appendChild(defaultOption);
+
+        // Populate the dropdown with field of study options
+        fieldOfStudyData.forEach(field => {
+          const option = document.createElement('option');
+          option.value = field.fieldOfStudyId; // You may need to adjust this based on your data structure
+          option.textContent = field.fieldOfStudyName;
+          fieldOfStudyDropdown.appendChild(option);
+        });
+      });
+
+      const thisForm = document.getElementById('add-user-form');
     thisForm.addEventListener('submit', async function (e) {
         e.preventDefault();
-        const formData = new FormData(thisForm).entries()
+
+        // Get the selected field of study value
+        const fieldOfStudyDropdown = document.getElementById('fieldOfStudy');
+        const selectedFieldOfStudy = fieldOfStudyDropdown.value;
+
+        // Create FormData from the form
+        const formData = new FormData(thisForm);
+
+        // Convert FormData to JSON
+        const jsonData = {};
+        formData.forEach((value, key) => {
+            jsonData[key] = value;
+        });
+
+        // Add the selected field of study directly to JSON payload
+        jsonData['fieldOfStudyId'] = selectedFieldOfStudy;
+
         const response = await fetch('http://localhost:8080/api/v1/user/createUser', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(Object.fromEntries(formData))
+            body: JSON.stringify(jsonData)
         });
-        const result = await response.json();
-        // here we can check the result and based on result we can redirect to new page or show error message
-        window.location.href = "/index.html"; // this will redirect to the new page
-    });
 
+    const result = await response.json();
+    // Log the result to check the response from the server
+    console.log('API Response:', result);
+
+    // here we can check the result and based on the result we can redirect to a new page or show an error message
+    window.location.href = "/index.html"; // this will redirect to the new page
+});
 
   </script>  
-
 </body>
 </html>

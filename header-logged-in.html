@@ -16,7 +16,9 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
+    <script src="./Javascript/fetch.js"></script>
+    <script src="./Javascript/login.js"></script>  
+
     <title>Opgaveforum</title>
 
 </head>
@@ -25,22 +27,16 @@
       <!--Container div starts here-->
       
       <div>
-         <header class="d-flex flex-wrap justify-content-center border-bottom">
+         <header class="d-flex flex-wrap justify-content-center py-3 border-bottom">
           <a href="/index.html" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
             <h3>Opgaveforum</h3>
           </a>
     
           <ul class="nav nav-pills text-center">        
             <li class="nav-item">
-              <a href="/login.html" class="nav-link text-dark">
+              <a onclick="logout()" href="index.html" class="nav-link text-dark">
                 <i class="bi bi-person-circle h2"></i><br>
-                Login
-              </a>
-            </li>
-            <li class="nav-item">
-              <a href="/create-user.html" class="nav-link text-dark">
-                <i class="bi bi-person-circle h2"></i><br>
-                Opret bruger
+                Log ud        
               </a>
             </li>
           </ul>

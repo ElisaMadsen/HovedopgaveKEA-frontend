@@ -5,33 +5,69 @@
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
     <script>
       $(function(){
-        $("#header").load("header.html");
+        $("#header").load("header-logged-in.html");
         $("#footer").load("footer.html");
       });
 
     </script>
 
-    <link rel="stylesheet" href="style/main.css"> 
-    <script src="./Javascript/create-post.js"></script> 
+    <link rel="stylesheet" href="style/user.css"> 
+    <script src="./Javascript/fetch.js"></script> 
+    <script src="./Javascript/post-details-landing-page.js"></script> 
+    <script src="./Javascript/redirect-to-create-post.js"></script> 
 
 </head>
 <body>
 
   <div id="header"></div>
 
+
   <div class="body-div" style="flex-direction: column;">
-    <div id="greeting"></div>
+    <div class="container-fluid" style="background-color: #cccccc;">
+        <div class="row" style="background-color: #cccccc8f">
+            <!-- Left-aligned 'Opret Indlæg' Button -->
+            <div class="col-3 text-center p-0">
+              <div style="background-color: #cccccc8f">
+                <a href="#" class="nav-link text-dark mt-3">
+                  <i class="bi bi-person-circle h2"></i><br>
+                </a>
+                <div class="mb-4" style="font-size: larger;" id="username"></div> 
+                <hr style="color: black; opacity: 1;">
 
-    <div>
-      <button type="button" class="btn" onclick="redirectToCreatePost()">Opret Indlæg</button>
+              </div>
+                <div style="background-color: #cccccc8f">
+                  <button type="button" class="btn" style="font-weight: 500;" onclick="redirectToCreatePost()">Opret Indlæg</button> 
+                </div>
+            </div>
+            <!-- Right-aligned Div -->
+            <div class="col text-center text-decoration-underline" style="background-color: #ebbd25;">
+              <div id="greeting" class="h3 text-center mb-3 mt-3" style="font-weight:200;"></div>
+
+              <div id="user-posts">
+                  <!-- Content of the user-posts div -->
+              </div>
+          </div>
+        </div>
     </div>
-
   </div>
 
+
+
+
+
+  <div id="footer" class="fixed-bottom"></div>
+
   <script>
+    // Get user details from URL parameters or local storage
     const urlParams = new URLSearchParams(window.location.search);
-    const userId = urlParams.get('userId');    
+    const userIdFromParams = urlParams.get('userId');
     const userName = urlParams.get('name');
+
+    // Assuming user object is available
+    const user = JSON.parse(localStorage.getItem('loggedIn'));
+    
+    // Determine the userId to use
+    const userId = userIdFromParams || (user && user.userId);
 
     // Display a personalized greeting
     const greetingElement = document.getElementById('greeting');
@@ -40,9 +76,23 @@
     } else {
         greetingElement.textContent = 'Velkommen!';
     }
+
+    // Update the username dynamically
+    const usernameElement = document.getElementById('username');
+    if (user && user.userName) {
+        usernameElement.textContent = user.userName;
+    }
+
+    // Fetch and display user posts when the page loads
+    if (userId) {
+        getUsersPostDetails(userId);
+    } else {
+        console.error('User not logged in or missing userId.');
+        // Handle the case where the user is not logged in or missing userId
+    }
 </script>
 
-  <div id="footer" class="fixed-bottom"></div>
 
 </body>
 </html>
+

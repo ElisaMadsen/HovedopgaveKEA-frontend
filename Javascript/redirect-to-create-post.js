@@ -1,5 +1,5 @@
 function redirectToCreatePost() {
-    const userId = localStorage.getItem('loggedIn');
+    const userId = localStorage.getItem('userId');
     
     if (userId) {
         window.location.href = `/create-post.html?userId=${userId}`;
