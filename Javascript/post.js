@@ -37,14 +37,25 @@ async function getAllPosts() {
     }
 
         // Add event listener to each row
+        // Check if the user is logged in
+        const loggedInUser = JSON.parse(localStorage.getItem('loggedIn'));
+
+        // Add event listener to each row
         const rows = tableBody.querySelectorAll("tr.clickable-row");
         rows.forEach(row => {
             row.addEventListener("click", () => {
                 const postId = row.dataset.postId;
-                // Navigate to the post details page with the postId as a query parameter
-                window.location.href = `/post-details.html?postId=${postId}`;
+
+                // If the user is logged in, include userId in the URL
+                if (loggedInUser && loggedInUser.userId) {
+                    window.location.href = `/post-details.html?postId=${postId}&userId=${loggedInUser.userId}`;
+                } else {
+                    // Navigate to the post details page with only postId as a query parameter
+                    window.location.href = `/post-details.html?postId=${postId}`;
+                }
             });
         });
+
 }
 
 

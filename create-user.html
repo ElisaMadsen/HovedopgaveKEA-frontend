@@ -45,17 +45,17 @@
 
           <div class="mb-3">
             <label for="userEmail" class="form-label">Email:</label>
-            <input required type="text" class="form-control" id="userEmail" name="userEmail">
+            <input required type="email" class="form-control" id="userEmail" name="userEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
           </div>
-
+    
           <div class="mb-3">
             <label for="userPassword" class="form-label">Kodeord:</label>
-            <input required type="text" class="form-control" id="userPassword" name="userPassword">
+            <input required type="password" class="form-control" id="userPassword" name="userPassword" pattern=".{8,}">
           </div>
 
           <div class="mb-3">
-            <label for="userPassword" class="form-label">Bekræft kodeord:</label>
-            <input required type="text" class="form-control" id="userPassword" name="userPassword">
+            <label for="confirmPassword" class="form-label">Bekræft kodeord:</label>
+            <input required type="password" class="form-control" id="confirmPassword" name="confirmPassword">
           </div>
           
           <div class="text-center d-grid gap-2 col-6 mx-auto">
@@ -101,6 +101,16 @@
       const thisForm = document.getElementById('add-user-form');
     thisForm.addEventListener('submit', async function (e) {
         e.preventDefault();
+
+              // Get the values from the password and confirm password fields
+      const password = document.getElementById('userPassword').value;
+      const confirmPassword = document.getElementById('confirmPassword').value;
+
+      // Check if the passwords match
+      if (password !== confirmPassword) {
+        alert('Kodeord matcher ikke.');
+        return;
+      }
 
         // Get the selected field of study value
         const fieldOfStudyDropdown = document.getElementById('fieldOfStudy');

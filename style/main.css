@@ -54,3 +54,13 @@ table th {
     background-color: #ebbd25;
     color: white;
   }
+
+#errorContainer {
+    margin-bottom: 0px;
+}
+
+/* Add styles for the alert message inside the container */
+#errorContainer .alert {
+    background-color: #f2dede; /* Light red background color */
+    color: #a94442; /* Dark red text color */
+}

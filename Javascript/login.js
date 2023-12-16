@@ -18,18 +18,27 @@ async function login() {
             window.location.href = `user-landing-page.html?name=${userName}&userId=${userId}`;
         } else {
             console.error('Login failed');
-            // Handle login failure, show an error message, etc.
+            // Display error message for incorrect email or password
+            showError('Incorrect email or password', 'errorContainer');
         }
     } catch (error) {
         console.error('Error during login:', error.message);
-        // Handle other errors
+        // Display a generic error message
+        showError('Email eller kodeord er ikke korrekt', 'errorContainer');
     }
 }
+
+function showError(message, errorContainerId) {
+    // Display error message underneath the specified container
+    const errorContainer = document.getElementById(errorContainerId);
+    errorContainer.innerHTML = `<div class="alert-danger">${message}</div>`;
+}
+
 
 function saveUserInfo(user) {
     localStorage.setItem('loggedIn', JSON.stringify(user));
     localStorage.setItem('userId', user.userId);
-
+    console.log('User Info Saved:', user);
 }
 
 function logout() {
