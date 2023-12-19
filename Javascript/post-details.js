@@ -12,21 +12,21 @@ async function getPostDetails(postId) {
 
         const html = `
         <div style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
-            <div style="width: 90%; text-align: center; border: solid 1px;">
+            <div style="width: 90%; text-align: center; border: solid 1px; color: white; font-weight: 700; letter-spacing: 3px; text-transform:uppercase;">
                 <p style="font-size: 22px;">${postDetailsResponse.postTitle}</p>
             </div>
-            <div style="width: 90%; text-align: left; border: solid 1px;">
+            <div style="width: 90%; text-align: left; border: solid 1px; color: white; font-weight: 700; letter-spacing: 3px; text-transform: uppercase;">
                 <p><strong>Forfatter:</strong> ${postDetailsResponse.userName}</p>
                 <p><strong>Dato:</strong> ${formatDate(postDetailsResponse.postDate)}</p>
             </div>
-            <div style="width: 90%; border: solid 1px;">
+            <div style="width: 90%; border: solid 1px; color: white; font-weight: 700; letter-spacing: 3px;">
                 <p>${postDetailsResponse.post}</p>
             </div>
-            <div id="commentSection" style="width: 90%; text-align: left; margin-top:5px;">
+            <div id="commentSection" style="width: 90%; text-align: left; margin-top:5px; color: white; font-weight: 700; letter-spacing: 3px;">
                 <div id="kommenterDiv" style="text-decoration: underline; cursor: pointer;">Kommentér på denne tråd</div>
-                <div id="commentField" style="display: none; margin-top: 10px;">
-                    <input type="text" id="comment" placeholder="Write your comment" style="padding: 5px; margin-right: 5px;">
-                    <button id="kommenterButton" style="padding: 5px; background-color: #4CAF50; color: white; border: none; cursor: pointer;">Kommenter</button>
+                <div id="commentField" style="display: none; margin-top: 10px; border:none;">
+                    <textarea type="text" id="comment" style="padding: 5px; margin-right: 5px;"></textarea>
+                    <button id="kommenterButton" style="margin-top:10px; padding: 5px; background-color: #7388A4; color: white; border: none; cursor: pointer;">KOMMENTER</button>
                 </div>
             </div>
             <div id="commentContainer" style="width: 90%; margin-top: 10px; text-align: center;">
@@ -34,8 +34,8 @@ async function getPostDetails(postId) {
                 ${comments.map(comment => `
                 <div style="margin-bottom: 8px; padding: 8px; border: 1px solid #ccc; border-radius: 4px; background-color: #f9f9f9;">
                     <div style="width: 90%; text-align: left; margin-top:5px;">
-                        <p><strong>Forfatter:</strong> </p>
-                        <p><strong>Dato:</strong> </p>
+                        <p><strong>FORFATTER:</strong> </p>
+                        <p><strong>DATO:</strong> </p>
                     </div>
 
                     <p style="margin: 0;">${comment.comment}</p>

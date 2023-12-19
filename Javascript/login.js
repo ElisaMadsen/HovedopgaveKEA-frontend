@@ -24,7 +24,7 @@ async function login() {
     } catch (error) {
         console.error('Error during login:', error.message);
         // Display a generic error message
-        showError('Email eller kodeord er ikke korrekt', 'errorContainer');
+        showError('EMAIL ELLER KODEORD ER IKKE KORREKT', 'errorContainer');
     }
 }
 

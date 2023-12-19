@@ -11,59 +11,71 @@
 
     </script>
 
-    <link rel="stylesheet" href="style/main.css"> 
+    <link rel="stylesheet" href="style/user.css"> 
     <script src="./Javascript/fetch.js"></script>
     <script src="./Javascript/post.js"></script>  
+
+    <style>
+      /* Style for the placeholder in the custom select wrapper */
+      .select-wrapper::before {
+          content: 'STUDIERETNING';
+          display: block;
+          position: absolute;
+          color: white;
+          letter-spacing: 3px;
+          font-weight: 700;
+      }
+      </style>
 
 </head>
 <body>
 
   <div id="header"></div>
 
-  <div class="body-div">
+  <div class="body-div" style="background-color: #526782;">
     <form id="add-user-form">
-      <div class="text-center">
-        <h1>Opret Bruger</h1> 
+      <div class="text-center" style="color: white; font-size: small; font-weight: 700;">
+        <h1 style="font-weight: 800; letter-spacing: 6px;">OPRET BRUGER</h1> 
       </div>
         <br>
         <br>
 
-        <div class="mb-3">
-            <label for="userName" class="form-label font-weight-bold">Navn:</label>
-            <input required type="text" class="form-control" id="userName" name="userName">
+          <div class="mb-3">
+            <label for="userName" class="form-label font-weight-bold"></label>
+            <input required type="text" placeholder="NAVN" class="form-control" id="userName" name="userName">
           </div>
 
           <div class="mb-3">
-            <label for="fieldOfStudy" class="form-label">Studieretning:</label>
-            <select required type="text" class="form-control" id="fieldOfStudy" name="fieldOfStudy"></select>
+            <label for="fieldOfStudy" class="form-label"></label>
+              <select style="color: white; font-weight: 700; letter-spacing: 4px;" required class="form-control" id="fieldOfStudy" name="fieldOfStudy"></select>
           </div>          
 
           <div class="mb-3">
-            <label for="graduationYear" class="form-label">Afgangsår:</label>
-            <input required type="text" class="form-control" id="graduationYear" name="graduationYear">
+            <label for="graduationYear" class="form-label"></label>
+            <input required type="text" placeholder="AFGANGSÅR" class="form-control" id="graduationYear" name="graduationYear">
           </div>
 
           <div class="mb-3">
-            <label for="userEmail" class="form-label">Email:</label>
-            <input required type="email" class="form-control" id="userEmail" name="userEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+            <label for="userEmail" class="form-label"></label>
+            <input required type="email" placeholder="EMAIL" class="form-control" id="userEmail" name="userEmail" pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
           </div>
     
           <div class="mb-3">
-            <label for="userPassword" class="form-label">Kodeord:</label>
-            <input required type="password" class="form-control" id="userPassword" name="userPassword" pattern=".{8,}">
+            <label for="userPassword" class="form-label"></label>
+            <input required type="password" placeholder="KODEORD" class="form-control" id="userPassword" name="userPassword" pattern=".{8,}">
           </div>
 
           <div class="mb-3">
-            <label for="confirmPassword" class="form-label">Bekræft kodeord:</label>
-            <input required type="password" class="form-control" id="confirmPassword" name="confirmPassword">
+            <label for="confirmPassword" class="form-label"></label>
+            <input required type="password" placeholder="BEKRÆFT KODEORD" class="form-control" id="confirmPassword" name="confirmPassword">
           </div>
           
-          <div class="text-center d-grid gap-2 col-6 mx-auto">
-            <button type="submit" id="submit-user" class="btn">Opret Bruger</button>
+          <div class="create-user-button text-center d-grid gap-2 col-6 mx-auto">
+            <button type="submit" id="submit-user" class="btn">OPRET BRUGER</button>
           </div>
            
-          <div class="text-center d-grid gap-1 col-3 mx-auto">
-            <button onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">Annuller</button>
+          <div class="text-center d-grid gap-1 mx-auto">
+            <button style="color: white; font-weight: 700; letter-spacing: 3px; font-size: small;" onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">ANNULLER</button>
           </div> 
      </form>
 
@@ -86,7 +98,7 @@
         // Add a default option
         const defaultOption = document.createElement('option');
         defaultOption.value = ''; // You may want to set this to an appropriate default value
-        defaultOption.textContent = 'Vælg en uddannelse';
+        defaultOption.textContent = 'STUDIERETNING';
         fieldOfStudyDropdown.appendChild(defaultOption);
 
         // Populate the dropdown with field of study options

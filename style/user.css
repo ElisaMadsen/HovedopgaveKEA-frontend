@@ -27,3 +27,38 @@ body {
 .row {
     height: 100%;
 }
+
+.form-control{
+    background-color: #526782!important;
+    border:none!important;
+    border-bottom: 3px solid #ffffff!important; 
+    outline: none!important; 
+    padding: 5px 0!important; 
+    border-radius: 0px!important;
+
+  }
+
+  .form-control::placeholder{
+    color: white!important;
+    letter-spacing: 5px!important;
+    font-weight: 700!important;
+
+  }
+
+  .create-user-button {
+    background-color: white;
+    width: 60%;
+    margin-top: 30px;
+  }
+
+  .create-user-button button{
+    font-family: 'Assistant';
+    font-weight: 700!important;
+    letter-spacing: 4px;
+
+  }
+
+  /* Style for the placeholder option */
+#fieldOfStudy option[disabled] {
+    color: white !important;
+}

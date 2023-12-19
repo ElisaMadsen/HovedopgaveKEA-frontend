@@ -12,10 +12,10 @@ async function getUsersPostDetails(userId) {
 
         const html = `
         <div>
-            <p>Dine indlæg</p>
-            <hr style="color: black; opacity: 1;">
+            <p style="font-weight:500; color: white; letter-spacing: 4px;">DINE INDLÆG</p>
+            <hr style="color: white; opacity: 1;">
             ${posts.map(post => `
-                <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; justify-content: space-between; align-items: center; font-weight:500; color: white; letter-spacing: 4px;">
                     <p style="margin: 0 auto;">${post.postTitle}</p>
                     <button class="btn btn-close delete-post" data-post-id="${post.postId}"></button>
                 </div>

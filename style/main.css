@@ -1,8 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300&family=Cormorant+SC:wght@300&family=Hanken+Grotesk:wght@300&display=swap');
+
 .body-div {
     display: flex;
     align-items: center;
     justify-content: center;
+    font-family: 'Assistant', sans-serif;
+    background-color: #526782;
 }
+
 
 #add-user-form {
     width: 30%;
@@ -39,20 +44,33 @@ table {
   }
   
 table td, table th {
-    border: 1px solid #ddd;
+    border: 3px solid transparent; /* Set the border color to transparent */
+    border-bottom: 3px solid white;
     padding: 8px;
   }
   
-table tr:nth-child(even){background-color: #f2f2f2;}
+table tr{
+    background-color: #7388A4;
+
+}
+
+table tr{
+    color: white;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 4px;
+
+}
   
-table tr:hover {background-color: #ddd;}
+table tr:hover {background-color: #657489;}
   
 table th {
     padding-top: 12px;
     padding-bottom: 12px;
     text-align: left;
-    background-color: #ebbd25;
+    background-color: #657489;
     color: white;
+    letter-spacing: 4px;
   }
 
 #errorContainer {
@@ -64,3 +82,16 @@ table th {
     background-color: #f2dede; /* Light red background color */
     color: #a94442; /* Dark red text color */
 }
+
+.create-post-button {
+    background-color: white;
+    width: 60%;
+    margin-top: 30px;
+  }
+
+  .create-post-button button{
+    font-family: 'Assistant';
+    font-weight: 700!important;
+    letter-spacing: 4px;
+
+  }

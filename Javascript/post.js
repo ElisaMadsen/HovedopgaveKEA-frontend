@@ -8,10 +8,10 @@ async function getAllPosts() {
         <table style="width:100%">
             <thead>
                 <tr>
-                    <th>Studieretning</th>
-                    <th>Overskrift</th>
-                    <th>Forfatter</th>
-                    <th>Dato</th>
+                    <th>STUDIERETNING</th>
+                    <th>OVERSKRIFT</th>
+                    <th>FORFATTER</th>
+                    <th>DATO</th>
                 </tr>
             </thead>
             <tbody id="post-table-body">

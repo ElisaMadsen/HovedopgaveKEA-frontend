@@ -8,31 +8,36 @@
         });
     </script>
     <link rel="stylesheet" href="style/main.css"> 
-    <link rel="stylesheet" href="style/main.css"> 
 
-    <link rel="stylesheet" href="style/main.css">
+    <style>
+        /* CSS */
+        textarea::placeholder {
+            color: white; /* Set the color of the placeholder text */
+        }
+
+    </style>
 
 </head>
-<body>
+<body style="background-color: #657489;">
   <div id="header"></div>
   <div id="header"></div>
 
     <div id="header"></div>
 
-    <div class="body-div">
+    <div class="body-div" style="background-color: #657489;">
         <form id="add-post-form">
-            <div class="text-center">
-                <h1>Opret indlæg</h1>
-            </div>
+            <div class="text-center" style="color: white; font-size: small; font-weight: 700;">
+                <h1 style="font-weight: 800; letter-spacing: 6px;">OPRET INDLÆG</h1> 
+              </div>
             <br>
             <br>
             <div class="mb-3">
-                <label for="postTitle" class="form-label font-weight-bold">Titel:</label>
-                <input required type="text" class="form-control" id="postTitle" name="postTitle">
+                <label style="color: white; font-weight: 700; letter-spacing: 3px;" for="postTitle" class="form-label font-weight-bold">TITEL</label>
+                <input style="background-color: #526782; border-radius: 20px; border: #526782;"  required type="text" class="form-control" id="postTitle" name="postTitle">
             </div>
             <div class="mb-3" style="display: flex; flex-direction: column;">
-                <label for="post" class="form-label">Indlæg:</label>
-                <textarea id="post" name="post" rows="4" cols="50" placeholder="Enter your text here..."></textarea>
+                <label style="color: white; font-weight: 700; letter-spacing: 3px;" for="post" class="form-label">INDLÆG</label>
+                <textarea style="background-color: #526782; border-radius: 20px; border: #526782;" id="post" name="post" rows="4" cols="50" placeholder="SKRIV DIN TEKST HER..."></textarea>
             </div>
             <!--
             <div class="mb-3">
@@ -43,11 +48,11 @@
             <div class="mb-3">
                 <input type="hidden" name="userId" id="userId" value="">
             </div>
-            <div class="text-center d-grid gap-2 col-6 mx-auto">
+            <div class="create-post-button text-center d-grid gap-2 col-6 mx-auto">
                 <button type="submit" id="submit-user" class="btn">Opret Indlæg</button>
             </div>
             <div class="text-center d-grid gap-1 col-3 mx-auto">
-                <button onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">Annuller</button>
+                <button style="color: white; font-weight: 700; letter-spacing: 3px; font-size: small;" onclick="window.location.href='http://127.0.0.1:5500/index.html'" class="btn">Annuller</button>
             </div>
         </form>
   </div>
