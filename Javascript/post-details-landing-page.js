@@ -11,7 +11,7 @@ async function getUsersPostDetails(userId) {
         const showUsersPostDetails = document.getElementById('user-posts');
 
         const html = `
-        <div>
+        <div style="text-transform: uppercase;">
             <p style="font-weight:500; color: white; letter-spacing: 4px;">DINE INDLÆG</p>
             <hr style="color: white; opacity: 1;">
             ${posts.map(post => `
@@ -47,3 +47,35 @@ async function deletePost(postId) {
         console.log(`Post with ID ${postId} was not deleted`);
     }
 }
+
+async function getUsersFieldOfStudy(userId) {
+    try {
+        const userFieldOfStudyResponse = await getResponse(`http://localhost:8080/api/v1/user/${userId}`, 'GET');
+
+        console.log('userFieldOfStudyResponse:', userFieldOfStudyResponse);
+
+        const fieldOfStudy = userFieldOfStudyResponse;
+
+        if (fieldOfStudy && fieldOfStudy.users) {
+            const showUsersFieldOfStudy = document.getElementById('user-field-of-study');
+            showUsersFieldOfStudy.innerHTML = `
+                <hr style="color: white; opacity: 1;">
+                <p>${fieldOfStudy.fieldOfStudyName}</p>
+            `;
+        } else {
+            console.error('Field of study or users not found in userFieldOfStudyResponse:', userFieldOfStudyResponse);
+        }
+    } catch (error) {
+        console.error('Error fetching user field of study:', error);
+    }
+}
+
+
+
+
+
+
+
+
+
+

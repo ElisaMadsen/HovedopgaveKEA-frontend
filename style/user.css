@@ -52,7 +52,6 @@ body {
   }
 
   .create-user-button button{
-    font-family: 'Assistant';
     font-weight: 700!important;
     letter-spacing: 4px;
 
@@ -61,4 +60,14 @@ body {
   /* Style for the placeholder option */
 #fieldOfStudy option[disabled] {
     color: white !important;
+}
+
+a:hover,
+a:active {
+    font-size: 100%;
+}
+
+.btn:hover,
+.btn:active {
+    font-size: 110%;
 }

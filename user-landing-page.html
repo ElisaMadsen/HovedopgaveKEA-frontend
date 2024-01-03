@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="style/user.css"> 
     <script src="./Javascript/fetch.js"></script> 
     <script src="./Javascript/post-details-landing-page.js"></script> 
-    <script src="./Javascript/redirect-to-create-post.js"></script> 
+    <script src="./Javascript/redirect.js"></script> 
 
 </head>
 <body>
@@ -32,22 +32,25 @@
                   <span><img width="65" height="53" src="/img/user_logo.png" alt=""></span>
                 </a>
                 <div class="mb-4" style="font-size: larger; color: white; letter-spacing: 3px;" id="username"></div> 
-                <hr style="color: white; opacity: 1;">
+                <div class="mb-4" style="font-size: larger; color: white; letter-spacing: 3px;" id="user-field-of-study"></div> 
 
               </div>
               <div>
-                <a href="index.html">
-                  <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px;">SE ALLE INDLÆG</button> 
-                </a>
+                  <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px;" onclick="redirectToIndex()">SE ALLE INDLÆG</button> 
               </div>
 
                 <div>
                   <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px;" onclick="redirectToCreatePost()">OPRET INDLÆG</button> 
                 </div>
+
+                
+                <div class="mt-auto mb-2">
+                  <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px; font-size: smaller;"onclick="redirectToSettings()" >INDSTILLINGER</button> 
+                </div>
             </div>
             <!-- Right-aligned Div -->
             <div class="col text-center text-decoration-none" style="background-color: #657489;">
-              <div id="greeting" class="h3 text-center mb-3 mt-3" style="font-weight:700; color: white; letter-spacing: 3px;"></div>
+              <div id="greeting" class="h3 text-center mb-3 mt-3" style="font-weight:700; color: white; letter-spacing: 3px; text-transform: uppercase;"></div>
 
               <div id="user-posts">
                   <!-- Content of the user-posts div -->
@@ -89,9 +92,11 @@
         usernameElement.textContent = user.userName;
     }
 
+
     // Fetch and display user posts when the page loads
     if (userId) {
-        getUsersPostDetails(userId);
+      getUsersFieldOfStudy(userId); // Add this line to fetch and display the field of study
+      getUsersPostDetails(userId);
     } else {
         console.error('User not logged in or missing userId.');
         // Handle the case where the user is not logged in or missing userId

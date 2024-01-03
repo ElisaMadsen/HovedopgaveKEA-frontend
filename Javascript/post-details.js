@@ -23,10 +23,10 @@ async function getPostDetails(postId) {
                 <p>${postDetailsResponse.post}</p>
             </div>
             <div id="commentSection" style="width: 90%; text-align: left; margin-top:5px; color: white; font-weight: 700; letter-spacing: 3px;">
-                <div id="kommenterDiv" style="text-decoration: underline; cursor: pointer;">Kommentér på denne tråd</div>
+                <div id="kommenterDiv" style="text-decoration: underline; cursor: pointer;">KOMMENTÉR PÅ DENNE TRÅD</div>
                 <div id="commentField" style="display: none; margin-top: 10px; border:none;">
                     <textarea type="text" id="comment" style="padding: 5px; margin-right: 5px;"></textarea>
-                    <button id="kommenterButton" style="margin-top:10px; padding: 5px; background-color: #7388A4; color: white; border: none; cursor: pointer;">KOMMENTER</button>
+                    <button id="kommenterButton" style="margin-top:10px; padding: 5px; background-color: #657489; color: white; border: none; cursor: pointer;">KOMMENTÉR</button>
                 </div>
             </div>
             <div id="commentContainer" style="width: 90%; margin-top: 10px; text-align: center;">

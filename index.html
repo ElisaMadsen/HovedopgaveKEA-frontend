@@ -28,6 +28,17 @@
     <div id="footer"></div>
 
     <script>
+           // Get user details from URL parameters or local storage
+    const urlParams = new URLSearchParams(window.location.search);
+    const userIdFromParams = urlParams.get('userId');
+    const userName = urlParams.get('name');
+
+    // Assuming user object is available
+    const user = JSON.parse(localStorage.getItem('loggedIn'));
+    
+    // Determine the userId to use
+    const userId = userIdFromParams || (user && user.userId);
+    
         window.onload = function() {
             getAllPosts();
         };

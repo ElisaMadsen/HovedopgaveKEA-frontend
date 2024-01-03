@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+
+<head>
+   
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.1/dist/jquery.min.js"></script>
+    <script>
+      $(function(){
+        $("#header").load("header-logged-in.html");
+        $("#footer").load("footer.html");
+      });
+
+    </script>
+
+    <link rel="stylesheet" href="style/user.css"> 
+    <script src="./Javascript/fetch.js"></script> 
+    <script src="./Javascript/post-details-landing-page.js"></script> 
+    <script src="./Javascript/redirect.js"></script> 
+
+</head>
+<body>
+
+  <div id="header"></div>
+
+
+  <div class="body-div" style="flex-direction: column;">
+
+
+    <div class="container-fluid" style="background-color: #7388A4;">
+        <div class="row">
+            <!-- Left-aligned 'Opret Indlæg' Button -->
+            <div class="col-3 text-center p-0">
+              <div>
+                <a href="#">
+                  <span><img width="65" height="53" src="/img/user_logo.png" alt="" onclick="redirectToUserLandingPage()"></span>
+                </a>
+                <div class="mb-4" style="font-size: larger; color: white; letter-spacing: 3px;" id="username"></div> 
+                <div class="mb-4" style="font-size: larger; color: white; letter-spacing: 3px;" id="user-field-of-study"></div> 
+
+              </div>
+
+              <div>
+                  <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px;" onclick="redirectToUserLandingPage()">SE ALLE INDLÆG</button> 
+              </div>
+
+                <div>
+                  <button type="button" class="btn" style="font-weight: 500; color: white; letter-spacing: 3px;" onclick="redirectToCreatePost()">OPRET INDLÆG</button> 
+                </div>
+
+            </div>
+            <!-- Right-aligned Div -->
+            <div class="col text-center text-decoration-none" style="background-color: #657489;">
+                <form style="margin-left:25%; width: 50%; font-weight: bold;" id="update-user-form">
+                    <div class="mb-3">
+                      <input type="hidden" id="userId" name="userId">
+                    </div>
+                    
+                    <div class="mb-3" style="color: white; letter-spacing: 3px;">
+                        <label for="userName" class="form-label font-weight-bold">NAVN:</label>
+                        <input type="text" class="form-control" id="userName" name="userName">
+                    </div>
+                        
+                    <input type="hidden" name="fieldOfStudyId" id="fieldOfStudyId">
+                    <div class="mb-3" style="color: white; letter-spacing: 3px;">
+                      <label for="fieldOfStudyName" class="form-label"> STUDIERETNING:</label>
+                      <input type="text" class="form-control" id="fieldOfStudyName" name="fieldOfStudyName">
+                    </div>
+                    <div class="mb-3" style="color: white; letter-spacing: 3px;">
+                        <label for="graduationYear" class="form-label">AFGANGSÅR:</label>
+                        <input type="text" class="form-control" id="graduationYear" name="graduationYear">
+                      </div>
+                    <div class="mb-3" style="color: white; letter-spacing: 3px;">
+                      <label for="userEmail" class="form-label">EMAIL:</label>
+                      <input type="text" class="form-control" id="userEmail" name="userEmail">
+                    </div>
+                    <div class="mb-3" style="color: white; letter-spacing: 3px;">
+                        <label for="userPassword" class="form-label">KODEORD:</label>
+                        <input type="text" class="form-control" id="userPassword" name="userPassword">
+                      </div>
+
+                    <div class="create-user-button text-center d-grid gap-3 col-5 mx-auto d-flex align-items-center justify-content-evenly">
+                      <button type="submit" id="update-user" class="btn" style="width:50% ;">GEM</button>
+                    </div>
+                  </form>
+
+
+          </div>
+        </div>
+    </div>
+  </div>
+
+
+
+
+
+  <div id="footer" class="fixed-bottom"></div>
+
+  <script>
+    var endPointUrl;    
+
+    window.onload = function fillTheUserForm(){
+        getIdFromUrl(); // make the endpoint url
+        getIndividualUserAndFillForm(); // get data from backend
+    }
+
+    //get the id from url and make the url for rest cal
+    function getIdFromUrl() {
+        const queryString = window.location.search;
+        const urlParams = new URLSearchParams(queryString);
+        const id = urlParams.get('userId'); // Use 'userId' instead of 'id'
+
+        if (id !== null) {
+            endPointUrl = 'http://localhost:8080/api/v1/user/' + id;
+        } else {
+            // Handle the case where id is null, e.g., redirect or display an error message
+            console.error('User ID is null');
+        }
+    }
+
+    const getIndividualUserAndFillForm = async () => {
+    try {
+        if (!endPointUrl) {
+            console.error('Endpoint URL is undefined');
+            return;
+        }
+
+        // Call backend to get data
+        const response = await fetch(endPointUrl, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+        });
+
+        if (!response.ok) {
+            console.error(`Failed to fetch user data. Status: ${response.status}`);
+            return;
+        }
+
+        // Save data to a variable
+        const individualUser = await response.json();
+        console.log('Individual User Data:', individualUser);
+
+  
+
+// Check if the data structure is as expected
+if (individualUser && Array.isArray(individualUser.users) && individualUser.users.length > 0) {
+    const user = individualUser.users[0]; // Assuming there is only one user
+    console.log('Setting Graduation Year:', user.graduationYear);
+
+    document.getElementById('userId').value = user.userId || '';
+    document.getElementById('userName').value = user.userName || '';
+    document.getElementById('userEmail').value = user.userEmail || '';
+    document.getElementById('graduationYear').value = user.graduationYear || '';
+    document.getElementById('userPassword').value = user.userPassword || '';
+
+    // Log the entire user object to inspect its structure
+    console.log('User Object:', user);
+
+    // Check if 'fieldOfStudyId' and 'fieldOfStudyName' are properties of the first user in the array
+    if ('fieldOfStudyId' in user && 'fieldOfStudyName' in user) {
+        document.getElementById('fieldOfStudyId').value = user.fieldOfStudyId || '';
+        document.getElementById('fieldOfStudyName').value = user.fieldOfStudyName || '';
+
+        console.log('Setting Field of Study ID:', user.fieldOfStudyId);
+        console.log('Setting Field of Study Name:', user.fieldOfStudyName);
+    } else {
+        console.error('Field of Study ID or Name is not present in the user object');
+    }
+} else {
+    console.error('User data structure is incorrect');
+}
+
+
+
+
+    } catch (error) {
+        console.error('Error fetching user data:', error);
+    }
+};
+
+
+
+</script>  
+
+</body>
+</html>
+
